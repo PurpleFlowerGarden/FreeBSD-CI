@@ -27,6 +27,7 @@ jobs:
           pkg install -y curl cmake zip unzip
 
         run: |
+          set -e
           pwd
           ls -lah
           whoami
