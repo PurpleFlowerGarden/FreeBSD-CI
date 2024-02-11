@@ -25,7 +25,7 @@ jobs:
         usesh: true
         prepare: |
           pkg install -y curl cmake ninja unzip zip
-          pkg install -y git
+          pkg install -y git pkgconf
 
         run: |
           set -e
