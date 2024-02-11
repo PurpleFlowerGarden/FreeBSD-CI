@@ -34,4 +34,5 @@ jobs:
           env
           freebsd-version
           sh vcpkg/bootstrap-vcpkg.sh
+          vcpkg/vcpkg install zlib
           ls -l vcpkg
