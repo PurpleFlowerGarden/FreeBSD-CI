@@ -27,9 +27,10 @@ jobs:
           pkg install -y curl
 
         run: |
-          ls -l vcpkg
           pwd
           ls -lah
           whoami
           env
           freebsd-version
+          sh vcpkg/bootstrap.sh
+          ls -l vcpkg
