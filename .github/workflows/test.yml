@@ -32,5 +32,5 @@ jobs:
           whoami
           env
           freebsd-version
-          sh vcpkg/bootstrap.sh
+          sh vcpkg/bootstrap-vcpkg.sh
           ls -l vcpkg
