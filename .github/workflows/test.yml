@@ -15,6 +15,8 @@ jobs:
       MYTOKEN2: "value2"
     steps:
     - uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
     - name: Test in FreeBSD
       id: test
       uses: vmactions/freebsd-vm@v1
@@ -22,11 +24,19 @@ jobs:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
         prepare: |
-          pkg install -y curl
+          pkg install -y curl cmake ninja unzip zip
+          pkg install -y git pkgconf
+          pkg install -y mono
+          fetch -o /usr/local/bin/nuget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
         run: |
+          mono /usr/local/bin/nuget q
+          set -e
           pwd
           ls -lah
           whoami
           env
           freebsd-version
+          sh vcpkg/bootstrap-vcpkg.sh
+          vcpkg/vcpkg install zlib
+          mono $(vcpkg/vcpkg fetch nuget) list
