@@ -26,8 +26,11 @@ jobs:
         prepare: |
           pkg install -y curl cmake ninja unzip zip
           pkg install -y git pkgconf
+          pkg install -y mono
+          fetch -o /usr/local/bin/nuget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
         run: |
+          mono /usr/local/bin/nuget q
           set -e
           pwd
           ls -lah
@@ -36,4 +39,4 @@ jobs:
           freebsd-version
           sh vcpkg/bootstrap-vcpkg.sh
           vcpkg/vcpkg install zlib
-          ls -l vcpkg
+          mono $(vcpkg/vcpkg fetch nuget) list
